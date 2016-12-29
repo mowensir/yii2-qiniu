@@ -55,10 +55,14 @@ class QiniuAdapter extends AbstractAdapter implements Configurable
 
     public function setZone($zone)
     {
-        if (!in_array($zone, ['zone1', 'zone0'])) {
+        if (!in_array($zone, ['zone1', 'zone0',  'zone2'])) {
             throw new InvalidConfigException('The "zone" property must be "zone1" OR "zone0"');
         }
-        $this->_zone = call_user_func(['Qiniu\Zone', $zone]);
+        if ($zone === 'zone2') {
+           $this->_zone = new Zone('http://up-z2.qiniu.com', 'http://upload-z2.qiniu.com');      
+        } else {
+            $this->_zone = call_user_func(['Qiniu\Zone', $zone]);
+        }
     }
 
     /**
