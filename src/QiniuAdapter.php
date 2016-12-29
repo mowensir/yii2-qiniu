@@ -53,6 +53,9 @@ class QiniuAdapter extends AbstractAdapter implements Configurable
         return $this->_zone;
     }
 
+    /**
+     * 加zone2, 华南地区
+     */
     public function setZone($zone)
     {
         if (!in_array($zone, ['zone1', 'zone0',  'zone2'])) {
